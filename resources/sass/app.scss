@@ -1,0 +1,70 @@
+// Fonts
+// @import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+// 1. 設定とカスタム変数
+@import "variables";
+
+// 2. Bootstrap と依存関係
+@import "~bootstrap/scss/bootstrap";
+
+// 3. コンポーネント固有のスタイル
+@import "components/buttons";
+@import "components/cards";
+@import "components/forms";
+
+// 4. レイアウトとページ固有のスタイル
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/sidebar";
+
+// 5. ユーティリティクラス
+@import "utilities";
+
+.m-plus-rounded-1c-regular {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #5e5e5e;
+}
+
+body {
+    background-color: #fff5ee;
+}
+
+.circle {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative; /* 基準値とする */
+    overflow: hidden; /* はみ出た部分を非表示 */
+}
+
+.list {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.list__item1 {
+    width: 40%;
+}
+.list__item2 {
+    width: 25%;
+}
+.list__item3 {
+    width: 20%;
+}
+.list__item4 {
+    width: 15%;
+}
+tr {
+    border-bottom: solid 1px #000;
+}
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem 0;
+}
