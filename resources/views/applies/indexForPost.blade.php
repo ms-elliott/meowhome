@@ -4,7 +4,7 @@
 @section('content')
 <section class="py-8">
     <div class="container px-4 mx-auto">
-        <div class="pt-4 px-4 bg-white rounded">
+        <div class="py-4 px-4 bg-white rounded">
             <div class="ml-auto d-flex justify-content-between">
                 <h4 class="text-xl font-bold">応募者一覧</h4>
             </div>
@@ -55,7 +55,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-5">
+            <div class="text-center mt-3 mb-2">
                 {{ $applies->links() }}
             </div>
             @endif

@@ -74,7 +74,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-5">
+            <div class="text-center mt-3">
                 {{ $applies->links() }}
             </div>
             @endif
