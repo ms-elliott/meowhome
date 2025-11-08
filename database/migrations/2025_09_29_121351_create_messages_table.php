@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id()->increments('id');
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('applied_user_id')->references('id')->on('users');
+            $table->foreignId('post_id')->constrained();
+            $table->foreignId('applied_user_id')->constrained();
             $table->integer('sent_by');
             $table->integer('sent_to');
             $table->text('message');

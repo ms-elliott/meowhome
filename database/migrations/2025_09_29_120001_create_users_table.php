@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('name');
             $table->integer('age');
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->foreignId('location_id')->constrained();
             $table->text('comment')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

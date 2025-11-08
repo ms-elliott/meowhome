@@ -20,9 +20,9 @@ return new class extends Migration
             $table->integer('age_year')->default(0);
             $table->integer('age_month')->default(0);
             $table->integer('gender')->comment('0:オス、1:メス');
-            $table->foreign('location_id')->references('id')->on('locations');
-            $table->foreign('breed_id')->references('id')->on('breeds')->nullable()->default(null);
-            $table->foreign('pattern_id')->references('id')->on('patterns')->nullable()->default(null);
+            $table->foreignId('location_id')->constrained();
+            $table->foreignId('breed_id')->constrained()->nullable()->default(null);
+            $table->foreignId('pattern_id')->constrained()->nullable()->default(null);
             $table->integer('vaccined')->comment('ワクチン接種')->default(0);
             $table->integer('neutered')->comment('去勢/避妊手術')->default(0);
             $table->integer('accept_single')->default(0);

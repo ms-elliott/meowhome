@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('applies', function (Blueprint $table) {
             $table->id()->increments('id');
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('post_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamp('accepted_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
