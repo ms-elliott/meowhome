@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id()->increments('id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->text('body');
             $table->integer('status')->comment('0:募集中、1:検討中、2:トライアル中、3:募集終了、4:里親決定済');
