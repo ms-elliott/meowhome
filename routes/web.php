@@ -22,7 +22,7 @@ Route::put('/users/{id}/edit', [UserController::class, 'update'])->name('users.u
 Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete')->middleware('auth');
 
 // 認証
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
