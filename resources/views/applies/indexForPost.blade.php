@@ -30,7 +30,7 @@
                 </div>
             </div>
             @else
-            <div class="row row-cols-md-4 mb-3">
+            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3">
                 @foreach($applies as $apply)
                 <div class="py-3">
                     <div class="card px-2 px-md-3 shadow">
@@ -42,8 +42,8 @@
                                 <p class="text-center mb-1">申請：<?php echo ($apply->created_at)->format('Y/m/d'); ?></p>
                             </div>
                             </p>
-                            <div class="text-center d-flex align-items-center">
-                                <a href="{{ route('users.show', $apply->user->id) }}" class="btn btn-outline-secondary me-2">プロフィール</a>
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-between">
+                                <a href="{{ route('users.show', $apply->user->id) }}" class="btn btn-outline-secondary me-3 me-md-1">プロフィール</a>
                                 <a href="{{ route('messages.show', [$apply->post->id, $apply->user->id]) }}" class="btn btn-secondary position-relative">メッセージ
                                     @if(App\Models\Message::getUnreadCount($apply->post->id, $apply->user_id) > 0)
                                     <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread posts</span></span>

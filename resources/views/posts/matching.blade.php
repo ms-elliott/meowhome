@@ -4,7 +4,7 @@
 @section('content')
 <section class="py-8">
     <div class="container px-4 mx-auto">
-        <div class="py-4 px-3 px-md-4 bg-white rounded">
+        <div class="py-4 px-3 px-lg-4 bg-white rounded">
             <div class="ml-auto mb-4 flex">
                 <h3 class="text-xl font-bold">あなたにマッチした募集一覧</h3>
                 <h6 class="text-xl font-bold">(所在地または応募可能地域が一致した募集のみ表示されます。)</h6>
@@ -22,9 +22,9 @@
                             <form action="{{ route('matchings.index', [Illuminate\Support\Facades\Auth::user()]) }}" method="GET">
                                 @csrf
                                 <div class="form-group">
-                                    <div class="row d-flex align-items-center mb-md-1">
-                                        <label class="col-4 col-md-1 text-md-end" for="location_id">所在地</label>
-                                        <div class="col-8 col-md-2">
+                                    <div class="row d-flex align-items-center mb-lg-1">
+                                        <label class="col-3 col-lg-1 text-lg-end" for="location_id">所在地</label>
+                                        <div class="col-9 col-lg-2">
                                             <select id="location_id" class="form-select" aria-label="location" name="location_id">
                                                 <option value="" selected>未選択</option>
                                                 @foreach ($locations as $location)
@@ -32,8 +32,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <label class="col-3 col-md-1 text-md-end" for="status">状況</label>
-                                        <div class="col-9 col-md-3 my-2">
+                                        <label class="col-3 col-lg-1 text-lg-end" for="status">状況</label>
+                                        <div class="col-9 col-lg-3 my-2">
                                             <select id="status" class="form-select" aria-label="status" name="status">
                                                 <option value="" selected>未選択</option>
                                                 <option value="0" @if(old('status')==='0' ) selected @endif>募集中</option>
@@ -45,23 +45,23 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex align-items-center">
-                                        <label class="col-3 col-md-1 text-md-end mb-2" for="age_from">年齢</label>
-                                        <div class="col-9 col-md-2 d-flex align-items-center mb-2">
+                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="age_from">年齢</label>
+                                        <div class="col-9 col-lg-2 d-flex align-items-center mb-2">
                                             <input id="age_from" class="form-control text-sm border rounded text-end" type="text" name="age_from" value="{{ old('age_from') }}" style="width: 60px;">
                                             <label class="text-end mx-1" for="age_to">〜</label>
                                             <input id="age_to" class="form-control text-sm border rounded text-end" type="text" name="age_to" value="{{ old('age_to') }}" style="width: 60px;">
-                                            <label class="ms-2">歳</label>
+                                            <label class="ms-xl-2">歳</label>
                                         </div>
-                                        <label class="col-3 col-md-1 text-md-end mb-2" for="gender">性別</label>
-                                        <div class="col-9 col-md-2 mb-2">
+                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="gender">性別</label>
+                                        <div class="col-9 col-lg-2 mb-2">
                                             <select id="gender" class="form-select" aria-label="gender" name="gender">
                                                 <option value="" selected>未選択</option>
                                                 <option value="0" @if(old('gender')==='0' ) selected @endif>オス</option>
                                                 <option value="1" @if(old('gender')==='1' ) selected @endif>メス</option>
                                             </select>
                                         </div>
-                                        <label class="col-3 col-md-1 text-md-end mb-2" for="breed_id">種類</label>
-                                        <div class="col-9 col-md-2">
+                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="breed_id">種類</label>
+                                        <div class="col-9 col-lg-2">
                                             <select id="breed_id" class="form-select mb-2" aria-label="breed" name="breed_id">
                                                 <option value="" selected>未選択</option>
                                                 @foreach ($breeds as $breed)
@@ -69,8 +69,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <label class="col-3 col-md-1 text-md-end mb-2" for="pattern_id">毛柄</label>
-                                        <div class="col-9 col-md-2 mb-2">
+                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="pattern_id">毛柄</label>
+                                        <div class="col-9 col-lg-2 mb-2">
                                             <select id="pattern_id" class="form-select" aria-label="pattern" name="pattern_id">
                                                 <option value="" selected>未選択</option>
                                                 @foreach ($patterns as $pattern)
@@ -79,10 +79,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row d-flex align-items-center mt-md-1 mb-1">
-                                        <label class="col-5 col-md-1 text-md-end">応募条件</label>
-                                        <div class="col-12 col-md-3 d-flex align-items-center justify-content-end justify-content-md-start">
-                                            <div class="form-check d-flex justify-content-center me-2 me-md-5">
+                                    <div class="row d-flex align-items-start mt-lg-1 mb-1">
+                                        <label class="col-3 col-lg-1 text-lg-end">応募条件</label>
+                                        <div class="col-9 col-lg-4 d-flex align-items-center justify-content-start">
+                                            <div class="form-check d-flex justify-content-center me-4 me-lg-5">
                                                 <input class="form-check-input" type="checkbox" value="1" id="accept_single" name="accept_single" @if(old('accept_single')==='1' ) checked @endif>
                                                 <label class="form-check-label ms-1" for="accept_single">
                                                     単身者応募可
@@ -97,8 +97,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row d-flex align-items-center justify-content-center mt-md-2 mt-3 mb-2">
-                                    <button type="submit" class="btn btn-secondary col-4 col-md-2 py-2 px-4">検索</button>
+                                <div class="row d-flex align-items-center justify-content-center mt-lg-2 mt-3 mb-2">
+                                    <button type="submit" class="btn btn-secondary col-4 col-lg-2 py-2 px-4">検索</button>
                                 </div>
                             </form>
                         </div>
@@ -113,7 +113,7 @@
                 </div>
             </div>
             @else
-            <div class="row row-cols-md-4 mb-3">
+            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-lg-3">
                 @foreach($posts as $post)
                 <div class="px-3 py-3">
                     <div class="card px-3 shadow" @if(in_array($post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>

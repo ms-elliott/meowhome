@@ -16,7 +16,7 @@
                 </div>
             </div>
             @else
-            <div class="row row-cols-md-4 mb-3">
+            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3">
                 @foreach($likes as $like)
                 <div class="px-3 py-3">
                     <div class="card px-3 shadow" @if(in_array($like->post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>
@@ -53,9 +53,9 @@
                                 </tbody>
                             </table>
                             </p>
-                            <div class="text-center">
-                                <a href="{{ route('posts.show', $like->post->id) }}" class="btn btn-outline-secondary px-4 me-3">詳細</a>
-                                <a href="{{ route('applies.create', $like->post->id) }}" class="btn btn-secondary px-4  @if(in_array($like->post->status, [3, 4], true) || (App\Models\Apply::getIsApplied($like->post->id, Auth()->user()->id))) disabled @endif" role="button" aria-disabled="true">
+                            <div class="d-flex justify-content-center justify-content-md-between">
+                                <a href="{{ route('posts.show', $like->post->id) }}" class="btn btn-outline-secondary px-4 me-3 me-md-0">詳細</a>
+                                <a href="{{ route('applies.create', $like->post->id) }}" class="btn btn-secondary px-4 @if(in_array($like->post->status, [3, 4], true) || (App\Models\Apply::getIsApplied($like->post->id, Auth()->user()->id))) disabled @endif" role="button" aria-disabled="true">
                                     @if(App\Models\Apply::getIsApplied($like->post->id, Auth()->user()->id))
                                     応募済
                                     @else
