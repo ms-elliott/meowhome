@@ -23,7 +23,7 @@
                 </div>
             </div>
             @else
-            <div class="row row-cols-md-4 mb-md-3">
+            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-md-3">
                 @foreach($posts as $post)
                 <div class="px-3 py-3">
                     <div class="card px-3 shadow" @if(in_array($post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>
@@ -52,8 +52,8 @@
                                 </tbody>
                             </table>
                             </p>
-                            <div class="text-center">
-                                <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="botton btn btn-outline-secondary px-4 me-3">詳細</a>
+                            <div class="text-center d-flex justify-content-md-between justify-content-center">
+                                <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="botton btn btn-outline-secondary px-4 me-3 me-md-0">詳細</a>
                                 <a href="{{ route('applies.indexPost', [$post->id]) }}" class="botton btn btn-secondary px-3 position-relative">応募者 ({{ App\Models\Apply::getApplicantCount($post->id) }})
                                     @if(App\Models\Message::getUnreadCount($post->id) > 0)
                                     <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread posts</span></span>

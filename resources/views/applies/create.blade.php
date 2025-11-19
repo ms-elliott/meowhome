@@ -3,7 +3,7 @@
 @section('title', '里親応募申請')
 @section('content')
 <div class="container px-4 mx-auto">
-    <div class="pt-3 pb-1 px-2 px-md-4 mx-md-5 bg-white rounded">
+    <div class="pt-3 pb-1 px-2 px-xl-4 mx-xl-5 bg-white rounded">
         <div class="row d-flex justify-content-center">
             <div class="ml-auto mb-2 flex">
                 <h3 class="text-xl font-bold">里親応募申請</h3>
@@ -25,7 +25,7 @@
                 <!-- ▲▲▲▲エラーメッセージ▲▲▲▲　-->
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-11 col-md-4 mb-4 border rounded bg-light">
+                <div class="col-11 col-xl-4 mb-4 border rounded bg-light">
                     <div class="text-center my-2">
                         <h5 class="my-1">この募集に里親応募する</h5>
                         <div class="mt-4 mb-2 d-flex justify-content-center">
@@ -54,14 +54,16 @@
                             </table>
                         </div>
                         <div class="row d-flex justify-content-center">
-                            <a href="{{ route('posts.show', $post->id) }}" class="button btn btn-secondary col-8 col-md-3 px-2 py-1">詳細</a>
+                            <div class="col">
+                                <a href="{{ route('posts.show', $post->id) }}" class="button btn btn-secondary px-5 py-1">詳細</a>
+                            </div>
                         </div>
                         <div class="row mt-4 d-felx align-items-center">
-                            <div class="col-6 col-md-6 text-end">
+                            <div class="col-6 col-xl-6 text-end">
                                 <img class="rounded-circle object-fit-cover" alt="" height="100" width="100"
                                     src="{{ isset($post->user->image) ? asset('storage/users/' . App\Http\Controllers\ImageController::convert2fileName($post->user->image)) : asset('storage/users/user_default.png') }}">
                             </div>
-                            <div class="col-6 col-md-6 mt-1">
+                            <div class="col-6 col-xl-6 mt-1">
                                 <p class="fw-bold mb-1 text-start">【投稿者】</p>
                                 <p class="fs-6 mb-2 ms-1 text-start">{{ $post->user->name }}</p>
                                 <div class="text-start">
@@ -71,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-11 col-md-7 mb-4 ms-md-4 border rounded bg-light">
+                <div class="col-11 col-xl-7 mb-4 ms-xl-4 border rounded bg-light">
                     <div class="my-2">
                         <h5 class="text-center my-1">応募申請</h5>
                         <div class="row">
@@ -96,8 +98,10 @@
                             </div>
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                            <div class="row d-flex justify-content-center">
-                                <button type="submit" class="btn btn-secondary col-7 col-md-3 px-4 py-2 mt-3 mb-2">申請</button>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-secondary px-5 py-2 mt-3 mb-2">申請</button>
+                                </div>
                             </div>
                         </div>
                     </div>

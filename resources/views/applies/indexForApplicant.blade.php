@@ -30,9 +30,9 @@
                 </div>
             </div>
             @else
-            <div class="row row-cols-md-4 mb-3">
+            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3">
                 @foreach($applies as $apply)
-                <div class="px-2 px-md-3 py-3">
+                <div class="px-2 px-xl-3 py-3">
                     <div class="card px-3 shadow" @if(in_array($apply->post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>
                         <img src="{{ asset('storage/posts/' . App\Http\Controllers\ImageController::convert2fileName($apply->post->photo1)) }}" class="card-img-top rounded mt-2" alt="写真" height="250" width="250" style="object-fit: cover;">
                         <div class="card-body">
@@ -61,8 +61,8 @@
                                 </tbody>
                             </table>
                             </p>
-                            <div class="text-center">
-                                <a href="{{ route('posts.show', $apply->post->id) }}" class="btn btn-outline-secondary px-3 me-2">投稿詳細</a>
+                            <div class="d-flex justify-content-center justify-content-md-between">
+                                <a href="{{ route('posts.show', $apply->post->id) }}" class="btn btn-outline-secondary px-3 me-3 me-md-0">募集詳細</a>
                                 <a href="{{ route('messages.show', ['post_id' => $apply->post->id, 'applied_id' => $apply->user_id]) }}" class="btn btn-secondary px-3 position-relative">メッセージ
                                     @if(App\Models\Message::getUnreadCount($apply->post->id, Auth()->user()->id) > 0)
                                     <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread posts</span></span>
