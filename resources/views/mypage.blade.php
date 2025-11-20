@@ -5,7 +5,7 @@
 <div class="container mt-3">
     <h3 class="mb-2 mb-md-3">{{ ($user->name) }}さんのマイページ</h3>
     <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card">
                 <h5 class="card-header text-center">里親を募集したい</h5>
                 <div class="card-body text-center">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card">
                 <h5 class="card-header text-center">里親になりたい</h5>
                 <div class="card-body text-center">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card mb-4">
                 <div class="col d-flex mt-4 justify-content-center">
                     <img class="rounded-circle" src="{{ ($user->image ? asset('storage/users/' . $user->image) : asset('storage/users/' . 'user_default.png')) }}" alt="プロフィール画像" height="150" width="150" style="object-fit: cover;">

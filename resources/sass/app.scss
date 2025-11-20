@@ -6,20 +6,20 @@
 @import "variables";
 
 // 2. Bootstrap と依存関係
-@import "~bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 // 3. コンポーネント固有のスタイル
-@import "components/buttons";
-@import "components/cards";
-@import "components/forms";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/card";
+@import "../../node_modules/bootstrap/scss/forms";
 
 // 4. レイアウトとページ固有のスタイル
-@import "layouts/header";
-@import "layouts/footer";
-@import "layouts/sidebar";
+//@import "layouts/header";
+//@import "layouts/footer";
+//@import "layouts/sidebar";
 
 // 5. ユーティリティクラス
-@import "utilities";
+@import "../../node_modules/bootstrap/scss/utilities";
 
 .m-plus-rounded-1c-regular {
     font-family: "M PLUS Rounded 1c", sans-serif;

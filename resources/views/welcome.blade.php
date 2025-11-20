@@ -20,13 +20,13 @@
     <h3 class="ms-3">あたらしいおうちへ、ただいま。</h3>
     <h5>ー 猫専用 譲渡マッチングサイト ー</h5>
     <div class="row row-cols-auto justify-content-center" style="margin-top: 60px;">
-        <div class="col-md-4 col-11">
+        <div class="col-xl-5" style="max-width: 600px;">
             <div class="card text-center">
-                <div class="card-body m-plus-rounded-1c-regular">
+                <div class="card-body m-plus-rounded-1c-regular mx-auto justify-content-center">
                     <h5 class="card-title mt-1">ユーザー登録はこちら</h5>
                     <p class="card-text">累計里親募集件数：{{ App\Models\Post::ComulativePostTotal() }}件</p>
                     <div>
-                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-lg me-md-5 mb-3">里親を募集したい方</a>
+                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-lg me-xl-5 mb-3">里親を募集したい方</a>
                         <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-lg mb-3"> 里親になりたい方 </a>
                     </div>
                 </div>
