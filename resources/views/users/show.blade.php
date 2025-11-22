@@ -36,7 +36,7 @@
                             </div>
                             <div class="row mb-3">
                                 <h6 class="col-md-3 mt-md-1 text-md-end">自己紹介：</h6>
-                                <h5 class="col-md-9">{{ $user->comment }}</h5>
+                                <h5 class="col-md-9">{!! nl2br(e($user->comment)) !!}</h5>
                             </div>
                         </div>
                         <div class="text-center">
