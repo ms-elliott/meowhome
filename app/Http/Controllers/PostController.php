@@ -62,13 +62,13 @@ class PostController extends Controller
         $validated = $request->validated();
 
         // 値が0（未選択）だった場合、nullに置換
-        $validated['breed_id'] = !empty($validated['breed_id']) ?: null;
-        $validated['pattern_id'] = !empty($validated['pattern_id']) ?: null;
-        $validated['accept_location1'] = !empty($validated['accept_location1']) ?: null;
-        $validated['accept_location2'] = !empty($validated['accept_location2']) ?: null;
-        $validated['accept_location3'] = !empty($validated['accept_location3']) ?: null;
-        $validated['accept_location4'] = !empty($validated['accept_location4']) ?: null;
-        $validated['accept_location5'] = !empty($validated['accept_location5']) ?: null;
+	$validated['breed_id'] = $validated['breed_id'] ?: null;
+        $validated['pattern_id'] = $validated['pattern_id'] ?: null;
+        $validated['accept_location1'] = $validated['accept_location1'] ?: null;
+        $validated['accept_location2'] = $validated['accept_location2'] ?: null;
+        $validated['accept_location3'] = $validated['accept_location3'] ?: null;
+        $validated['accept_location4'] = $validated['accept_location4'] ?: null;
+        $validated['accept_location5'] = $validated['accept_location5'] ?: null;
 
         // 写真①　必須
         $validated['photo1'] = $request->file('photo1')->store('posts', 'public');
@@ -144,13 +144,13 @@ class PostController extends Controller
         $updateData = $request->validated();
 
         // 値が0（未選択）だった場合、nullに置換
-        $updateData['breed_id'] = !empty($updateData['breed_id']) ?: null;
-        $updateData['pattern_id'] = !empty($updateData['pattern_id']) ?: null;
-        $updateData['accept_location1'] = !empty($updateData['accept_location1']) ?: null;
-        $updateData['accept_location2'] = !empty($updateData['accept_location2']) ?: null;
-        $updateData['accept_location3'] = !empty($updateData['accept_location3']) ?: null;
-        $updateData['accept_location4'] = !empty($updateData['accept_location4']) ?: null;
-        $updateData['accept_location5'] = !empty($updateData['accept_location5']) ?: null;
+        $updateData['breed_id'] = $updateData['breed_id'] ?: null;
+	$updateData['pattern_id'] = $updateData['pattern_id'] ?: null;
+	$updateData['accept_location1'] = $updateData['accept_location1'] ?: null;
+        $updateData['accept_location2'] = $updateData['accept_location2'] ?: null;
+        $updateData['accept_location3'] = $updateData['accept_location3'] ?: null;
+        $updateData['accept_location4'] = $updateData['accept_location4'] ?: null;
+        $updateData['accept_location5'] = $updateData['accept_location5'] ?: null;
 
         // 画像を変更する場合
         $array_photos = ['photo1', 'photo2', 'photo3'];

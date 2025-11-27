@@ -57,13 +57,18 @@
                         <h4>{{ $post->title }}</h4>
                     </div>
                     <div class="row mx-1 mx-xl-3">
-                        <table class="table table-bordered border-secondary" style="table-layout: fixed;">
-                            <tbody>
+                        <table class="table table-bordered border-secondary" style="table-layout: fixed; width: 100%;">
+                        <colgroup>
+				<col style="width: 25%;"> 
+				<col styel="width: 30%;">
+				<col style="width: 20%;">
+				<col style="width: 25%;">
+          		<tbody>
                                 <tr>
-                                    <th class="table-secondary text-center" width="25%">状況</th>
-                                    <td width="30%">{{ $status_name }}</td>
-                                    <th class="table-secondary text-center" width="20%">掲載日</th>
-                                    <td width="25%"><?php echo ($post->created_at)->format('Y/m/d'); ?></td>
+                                    <th class="table-secondary text-center"">状況</th>
+                                    <td>{{ $status_name }}</td>
+                                    <th class="table-secondary text-center">掲載日</th>
+                                    <td><?php echo ($post->created_at)->format('Y/m/d'); ?></td>
                                 </tr>
                                 <tr>
                                     <th class="table-secondary text-center">種類</th>
@@ -95,7 +100,7 @@
                                 </tr>
                                 <tr>
                                     <th class="table-secondary text-center">詳細</th>
-                                    <td colspan="3">{{ $post->body }}</td>
+                                    <td colspan="3" style="white-space: normal;">{!! nl2br(e($post->body)) !!}</td>
                                 </tr>
                             </tbody>
                         </table>

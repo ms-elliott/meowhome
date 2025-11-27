@@ -18,7 +18,7 @@
         <img src="{{ asset('mh_images/meowhome_logo.png')}}" alt="MeowHomeロゴ" height=50" class="mb-5">
     </div>
     <h3 class="ms-3">あたらしいおうちへ、ただいま。</h3>
-    <h5>ー 猫専用 譲渡マッチングサイト ー</h5>
+    <h5>ー 猫専用 譲渡マッチングアプリ ー</h5>
     <div class="row row-cols-auto justify-content-center" style="margin-top: 60px;">
         <div class="col-xl-5" style="max-width: 600px;">
             <div class="card text-center">
