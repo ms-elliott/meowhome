@@ -8,8 +8,8 @@ https://www.meowhome.jp/
 猫に特化した譲渡マッチングアプリです。
 
 ## ■ アプリを作ったキッカケ
-興味のあったPHP・Laravelを学んだことで実際に何か作りたいと思い、マッチングアプリを作成することにしました。<br>
-私自身が２匹の猫と暮らす愛猫家であることもあり、以前より関心のあった保護猫活動に少しでも役立てればと思い、猫特化の譲渡マッチングアプリに決めました。
+興味のあったPHP・Laravelを学んだことで実際に何か作りたいと考えました。<br>
+私自身が２匹の猫と暮らす愛猫家であることもあり、以前より関心のあった保護猫活動に少しでも役立てればと思い、猫特化の譲渡マッチングアプリを作成することにしました。
 
 ## ■ アプリに込めた思い・実現したい未来
 *年々減少傾向ではありますが、猫の殺処分は犬の３倍、そのうちの６割は子猫です。<br>
@@ -39,10 +39,13 @@ https://www.meowhome.jp/
 
 #### インフラ
 - AWS ( EC2, RDS, Route53, Certificate Manager, VPC )
+- 本番: AmazonLinux 2023 / 開発: MacOS Sequoia 15.6.1
 - Docker 28.4.0 / docker-compose 2.39.2
 - Apache 2.4.62
 - MySQL 8.0.43 / phpMyAdmin
 
 
 ## ■ インフラ構成図
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1e80c349-f8a8-44e3-a49f-4ac71458b104" />
+</p>
