@@ -56,7 +56,7 @@ https://www.meowhome.jp/
 
 <table><tr><th width="500">お気に入りページ</th>
       <th width="500">メッセージ一覧〜詳細ページ</th></tr>
-  <tr><td><img width="1470" height="830" alt="likes" src="https://github.com/user-attachments/assets/438b1337-8013-4393-90df-c2f8293ac14d" /></td>
+  <tr><td><img width="380" alt="likes" src="https://github.com/user-attachments/assets/438b1337-8013-4393-90df-c2f8293ac14d" /></td>
       <td><a href="https://gyazo.com/12851306657103e29c0bb8d9d35bcb68"><img src="https://i.gyazo.com/12851306657103e29c0bb8d9d35bcb68.gif" alt="Image from Gyazo" width="380"/></a></td></tr>
   <tr><td>募集ステータスや里親応募未/済の状況にあわせて、背景のグレーアウトやボタンの表示・活性/非活性が変わります。</td>
       <td>メッセージ詳細ページを開いた際のスクロール位置を最下部にし、最新メッセージが表示されるようにしました。</td></tr>
