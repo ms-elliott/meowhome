@@ -32,8 +32,8 @@ https://www.meowhome.jp/
 
 <table><tr><th width="500">ログインページ</th>
     <th width="500">ユーザ詳細・編集ページ</th></tr>
-  <tr><td><a href="https://gyazo.com/e4928657d0d38b61f974dbc214e75827"><img src="https://i.gyazo.com/e4928657d0d38b61f974dbc214e75827.gif" alt="Image from Gyazo" width="370"/></a></td>
-      <td><a href="https://gyazo.com/b607dca8d39d8458697278fc2c6234e5"><img src="https://i.gyazo.com/b607dca8d39d8458697278fc2c6234e5.gif" alt="Image from Gyazo" width="370"/></a></td></tr>
+  <tr><td><a href="https://gyazo.com/e4928657d0d38b61f974dbc214e75827"><img src="https://i.gyazo.com/e4928657d0d38b61f974dbc214e75827.gif" alt="Image from Gyazo" width="450"/></a></td>
+      <td><a href="https://gyazo.com/b607dca8d39d8458697278fc2c6234e5"><img src="https://i.gyazo.com/b607dca8d39d8458697278fc2c6234e5.gif" alt="Image from Gyazo" width="450"/></a></td></tr>
   <tr><td>ブラウザを閉じてもログインを継続させるため、ログイン保持機能を実装しました。</td>
       <td>詳細ページではユーザ本人の場合のみ編集ボタンを表示し、プロフィールを変更することができます。</td></tr>
 </table>
