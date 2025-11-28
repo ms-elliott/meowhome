@@ -48,7 +48,7 @@ https://www.meowhome.jp/
 
 <table><tr><th width="500">マッチング一覧・絞込み検索ページ</th>
       <th width="500">募集詳細〜里親応募ページ</th></tr>
-  <tr><td><a href="https://gyazo.com/bdb54fb990ebebd878fc69c4f09ac1d8"><img src="https://i.gyazo.com/bdb54fb990ebebd878fc69c4f09ac1d8.gif" alt="Image from Gyazo" width="380"/></a></td>
+  <tr><td><img width="1470" height="830" alt="likes" src="https://github.com/user-attachments/assets/22ec68fb-32c4-4ad9-bf12-f55e7189b8c5" /></a></td>
       <td><a href="https://gyazo.com/23fab0cd366129b23416374aaa0a6914"><img src="https://i.gyazo.com/23fab0cd366129b23416374aaa0a6914.gif" alt="Image from Gyazo" width="380"/></a></td></tr>
   <tr><td>一覧画面上でのお気に入り登録や絞込み検索機能を付けることで、ユーザーの操作性向上を意識しました。</td>
       <td>非同期通信で、お気に入りボタン押下後の表示が切り替わるようにしました。</td></tr>
