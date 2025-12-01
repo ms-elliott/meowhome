@@ -70,6 +70,9 @@ https://www.meowhome.jp/
       <td>上部ナビゲーションバーからログアウトすると、ログイン画面に遷移します。</td></tr>
 </table>
 
+<img width="324" height="324" alt="QR_601587" src="https://github.com/user-attachments/assets/ec634f65-4892-433a-8be4-f2044463d74c" /><br>
+**レスポンシブデザインの為、スマホでもご利用いただけます。**
+
 ## ■ 使用技術
 
 #### バックエンド
