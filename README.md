@@ -70,8 +70,9 @@ https://www.meowhome.jp/
       <td>上部ナビゲーションバーからログアウトすると、ログイン画面に遷移します。</td></tr>
 </table>
 
-<img width="324" height="324" alt="QR_601587" src="https://github.com/user-attachments/assets/ec634f65-4892-433a-8be4-f2044463d74c" /><br>
-**レスポンシブデザインの為、スマホでもご利用いただけます。**
+<table><tr><th width="700">レスポンシブデザインの為、スマホでもご利用いただけます。</th>
+    <tr><td align="center" valign="middle"><img height="324" alt="mobile_sample" src="https://github.com/user-attachments/assets/c01e61df-0707-41dc-bcf4-7bcc63186146" />　　　<img width="324" height="324" alt="QR_601587" src="https://github.com/user-attachments/assets/ec634f65-4892-433a-8be4-f2044463d74c" /></td></tr>
+</table>
 
 ## ■ 使用技術
 
