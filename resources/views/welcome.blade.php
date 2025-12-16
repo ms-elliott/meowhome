@@ -26,8 +26,8 @@
                     <h5 class="card-title mt-1">ユーザー登録はこちら</h5>
                     <p class="card-text">累計里親募集件数：{{ App\Models\Post::ComulativePostTotal() }}件</p>
                     <div>
-                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-lg me-xl-5 mb-3">里親を募集したい方</a>
-                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-lg mb-3"> 里親になりたい方 </a>
+                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-md-lg me-3 me-xl-5 mb-3">里親を募集したい方</a>
+                        <a href="{{ route('users.create') }}" class="button btn btn-secondary btn-md-lg mb-3"> 里親になりたい方 </a>
                     </div>
                 </div>
             </div>
