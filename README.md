@@ -2,7 +2,7 @@
 ![ogp](https://github.com/user-attachments/assets/4ef7c153-0d63-46d4-88e8-9b3674228178)
 
 ## ■ アプリURL
-https://www.meowhome.jp/
+~https://www.meowhome.jp/~ (AWS無料期間終了の為、公開停止中)
 
 ## ■ サービス概要
 猫に特化した譲渡マッチングアプリです。
