@@ -1,0 +1,188 @@
+// ============================================================
+// 共通レイアウト
+// components/_layout.scss
+// ============================================================
+// 使用箇所:
+//   - layouts/common.blade.php
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// ============================================================
+// 1. ページ全体ラッパー
+// ============================================================
+
+.layout-wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px; // フッター分の余白（フッターを下部固定するため）
+}
+
+// ============================================================
+// 2. ヘッダー
+// ============================================================
+
+.layout-header {
+    width: 100%;
+}
+
+// ============================================================
+// 3. メインコンテンツ
+// ============================================================
+
+.layout-main {
+    width: 100%;
+}
+
+// ============================================================
+// 4. フッター固定
+// ============================================================
+
+.layout-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+// ============================================================
+// 5. サイトナビゲーション (header.blade.php)
+// ============================================================
+
+.site-nav {
+    &__brand {
+        img {
+            display: block;
+            margin-left: 0.75rem;
+        }
+    }
+
+    &__link {
+        text-align: right;
+        padding-right: 0.5rem;
+        color: inherit;
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+}
+
+// ============================================================
+// 6. サイトフッター (footer.blade.php)
+// ============================================================
+
+.site-footer {
+    text-align: center;
+    color: #212529;
+
+    &__copy {
+        padding: 0.25rem 0;
+        margin: 0;
+        font-size: 0.875rem;
+    }
+}
+
+// ============================================================
+// 7. チャット吹き出し
+// ============================================================
+
+.balloon-chat {
+    display: flex;
+    flex-wrap: wrap;
+
+    &--left {
+        flex-direction: row;
+    }
+
+    &--right {
+        flex-direction: row-reverse;
+    }
+}
+
+.chatting {
+    position: relative;
+    display: inline-block;
+    margin: 10px 20px;
+    padding: 10px 12px;
+    background-color: v.$white;
+    border-radius: 12px;
+    text-align: left;
+    word-break: break-all;
+    max-width: 80vmax;
+
+    // 吹き出し三角
+    &::after {
+        content: "";
+        border: 15px solid transparent;
+        border-top-color: v.$white;
+        position: absolute;
+        top: 10px;
+    }
+
+    .balloon-chat--left &::after {
+        left: -15px;
+    }
+
+    .balloon-chat--right &::after {
+        right: -15px;
+    }
+}
+
+// ============================================================
+// 6. チャットアイコン
+// ============================================================
+
+.chat-icon {
+    &__img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid gray;
+        margin: 5px 0;
+    }
+
+    &__name {
+        width: 80px;
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+// ============================================================
+// 7. メッセージ一覧テーブル（レスポンシブ）
+// ============================================================
+
+.table_design08 {
+    @media screen and (max-width: 787px) {
+        text-align: left;
+
+        thead {
+            display: none;
+        }
+
+        th,
+        td {
+            display: block;
+            border: 0;
+            border-bottom: 2px solid #e6f1f6;
+            width: 100%;
+        }
+
+        tbody th {
+            background: darkgray;
+            color: v.$white;
+        }
+
+        td::before {
+            content: attr(data-label);
+            color: #4d9bc1;
+            font-weight: bold;
+            display: inline-block;
+            max-width: 20%;
+            min-width: 4em;
+            margin-right: 10px;
+        }
+    }
+}

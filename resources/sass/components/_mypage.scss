@@ -1,0 +1,138 @@
+// ============================================================
+// マイページスタイル
+// components/_mypage.scss
+// ============================================================
+// 使用ページ:
+//   - users/mypage
+//
+// ※ 未読バッジは _applies.scss の .unread-badge を使用
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// ============================================================
+// 1. ページ
+// ============================================================
+
+.mypage {
+    &__greeting {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 1rem 0 1.25rem;
+    }
+}
+
+// ============================================================
+// 2. 3カラムグリッド
+// ============================================================
+
+.mypage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// ============================================================
+// 3. カード共通
+// ============================================================
+
+.mypage-card {
+    border: 1px solid v.$border-color;
+    border-radius: v.$border-radius-base;
+    overflow: hidden;
+
+    &__header {
+        background-color: v.$bg-light;
+        border-bottom: 1px solid v.$border-color;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.75rem;
+        margin: 0;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 1rem 1rem;
+        gap: 1.5rem;
+    }
+
+    // プロフィールカードは縦積みで内部が複数ブロック
+    &--profile {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem 1rem;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        width: 100%;
+
+        &--message {
+            border: 1px solid v.$border-color;
+            border-radius: v.$border-radius-base;
+            padding: 1rem;
+        }
+    }
+
+    &__btn {
+        width: 50%;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &__desc {
+        font-size: 0.875rem;
+        color: v.$text-muted;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+// ============================================================
+// 4. プロフィールセクション
+// ============================================================
+
+.mypage-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
+    &__avatar {
+        border-radius: 50%;
+        object-fit: cover;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+// ============================================================
+// 5. ユーザー削除
+// ============================================================
+
+.mypage-delete {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+
+    &__btn {
+        background-color: v.$white;
+        padding: 0.5rem 3rem;
+    }
+}

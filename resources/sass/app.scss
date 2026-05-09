@@ -14,6 +14,13 @@
 @import "../../node_modules/bootstrap/scss/forms";
 
 // 4. レイアウトとページ固有のスタイル
+@use "abstracts/variables";
+@use "components/layout";
+@use "components/applies";
+@use "components/auth";
+@use "components/likes";
+@use "components/messages";
+@use "components/mypage";
 //@import "layouts/header";
 //@import "layouts/footer";
 //@import "layouts/sidebar";

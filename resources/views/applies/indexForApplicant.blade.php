@@ -1,83 +1,81 @@
 @extends('layouts.common')
 
 @section('title', '里親申請一覧')
+
 @section('content')
-<section class="py-8">
-    <div class="container px-4 mx-auto">
-        <div class="py-4 px-4 bg-white rounded">
-            <div class="ml-auto d-flex justify-content-between">
-                <h4 class="text-xl font-bold">応募済一覧</h4>
+<section class="applies-page">
+    <div class="container">
+        <div class="applies-page__inner">
+
+            {{-- ページタイトル --}}
+            <div class="applies-page__header">
+                <h4 class="applies-page__title">応募済一覧</h4>
+                <p class="applies-page__subtitle">（自分が里親応募した募集一覧）</p>
             </div>
-            <div class="row">
-                <div>
-                    <h6>（自分が里親応募した募集一覧）</h6>
-                </div>
-            </div>
-            @if(session('success'))
-            <div class="row">
-                <div class="d-flex align-items-center">
-                    <div class="col-md-6 mt-2 mb-3 px-3 py-1 border border-primary bg-light rounded">
-                        <p class="text-primary my-auto">{{ session('success') }}</p>
-                    </div>
-                </div>
+
+            {{-- フラッシュメッセージ --}}
+            @if (session('success'))
+            <div class="flash-message flash-message--success">
+                <p>{{ session('success') }}</p>
             </div>
             @endif
 
-            @if($applies->isEmpty())
-            <div class="row">
-                <div class="col mt-5 mb-3">
-                    <p class="fs-5 text-center">応募済の里親募集はありません</p>
-                </div>
+            {{-- 一覧 --}}
+            @if ($applies->isEmpty())
+            <div class="applies-page__empty">
+                <p>応募済の里親募集はありません</p>
             </div>
             @else
-            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-3">
-                @foreach($applies as $apply)
-                <div class="px-2 px-xl-3 py-3">
-                    <div class="card px-3 shadow" @if(in_array($apply->post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>
-                        <img src="{{ asset('storage/posts/' . App\Http\Controllers\ImageController::convert2fileName($apply->post->photo1)) }}" class="card-img-top rounded mt-2" alt="写真" height="250" width="250" style="object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title text-truncate">{{ $apply->post->title }}</h5>
-                            <p class="card-text">
-                            <table class="table table-bordered border-secondary table-sm">
-                                <tbody>
-                                    <tr>
-                                        <th class="table-secondary text-center">申請日</th>
-                                        <td class="ps-2 @if(in_array($apply->post->status, [3, 4], true)) table-secondary @else bg-white @endif" width="55%">
-                                            <?php echo ($apply->created_at)->format('Y/m/d'); ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-secondary text-center">状況</th>
-                                        <td class="ps-2 @if(in_array($apply->post->status, [3, 4], true)) table-secondary @else bg-white @endif">
-                                            {{ App\Models\Post::getStatusName($apply->post->status) }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-secondary text-center">投稿更新日</th>
-                                        <td class="ps-2 @if(in_array($apply->post->status, [3, 4], true)) table-secondary @else bg-white @endif">
-                                            <?php echo ($apply->post->updated_at)->format('Y/m/d'); ?>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </p>
-                            <div class="d-flex justify-content-center justify-content-md-between">
-                                <a href="{{ route('posts.show', $apply->post->id) }}" class="btn btn-outline-secondary px-3 me-3 me-md-0">募集詳細</a>
-                                <a href="{{ route('messages.show', ['post_id' => $apply->post->id, 'applied_id' => $apply->user_id]) }}" class="btn btn-secondary px-3 position-relative">メッセージ
-                                    @if(App\Models\Message::getUnreadCount($apply->post->id, Auth()->user()->id) > 0)
-                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread posts</span></span>
-                                    @endif
-                                </a>
-                            </div>
+            <div class="apply-card-grid">
+                @foreach ($applies as $apply)
+                @php $closed = in_array($apply->post->status, [3, 4], true) @endphp
+                <div class="apply-card {{ $closed ? 'apply-card--closed' : '' }}">
+                    <img
+                        src="{{ asset('storage/posts/' . App\Http\Controllers\ImageController::convert2fileName($apply->post->photo1)) }}"
+                        class="apply-card__photo"
+                        alt="写真">
+                    <div class="apply-card__body">
+                        <h5 class="apply-card__post-title">{{ $apply->post->title }}</h5>
+                        <table class="table table-bordered border-secondary table-sm">
+                            <tbody>
+                                <tr>
+                                    <th class="table-secondary text-center">申請日</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}" width="55%">
+                                        {{ $apply->created_at->format('Y/m/d') }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="table-secondary text-center">状況</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}">
+                                        {{ App\Models\Post::getStatusName($apply->post->status) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="table-secondary text-center">投稿更新日</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}">
+                                        {{ $apply->post->updated_at->format('Y/m/d') }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="apply-card__actions">
+                            <a href="{{ route('posts.show', $apply->post->id) }}" class="btn btn-outline-secondary">募集詳細</a>
+                            <a href="{{ route('messages.show', ['post_id' => $apply->post->id, 'applied_id' => $apply->user_id]) }}" class="btn btn-secondary position-relative">
+                                メッセージ
+                                @if (App\Models\Message::getUnreadCount($apply->post->id, auth()->id()) > 0)
+                                <span class="unread-badge"><span class="visually-hidden">未読あり</span></span>
+                                @endif
+                            </a>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-3">
+            <div class="applies-page__pagination">
                 {{ $applies->links() }}
             </div>
             @endif
+
         </div>
     </div>
 </section>

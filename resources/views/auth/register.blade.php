@@ -1,95 +1,111 @@
 @extends('layouts.common')
 
 @section('title', '会員登録')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('会員登録') }}</div>
+<section class="auth-page">
+    <div class="container">
+        <div class="auth-card">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+            <h2 class="auth-card__title">会員登録</h2>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('ユーザー名') }}</label>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('年齢') }}</label>
-
-                            <div class="col-md-1">
-                                <input id="age" type="age" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age">
-
-                                @error('age')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <label for="location" class="col-md-2 col-form-label text-md-end">{{ __('居住地') }}</label>
-
-                            <div class="col-md-3">
-                                <input id="location" type="location" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required autocomplete="location">
-
-                                @error('location')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary">
-                                    {{ __('登録') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                {{-- ユーザー名 --}}
+                <div class="auth-field">
+                    <label class="auth-field__label" for="name">ユーザー名</label>
+                    <div class="auth-field__input-wrap">
+                        <input
+                            id="name"
+                            class="auth-field__input form-control @error('name') is-invalid @enderror"
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            required
+                            autocomplete="name"
+                            autofocus>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
                 </div>
-            </div>
+
+                {{-- 年齢・居住地 --}}
+                <div class="auth-field auth-field--inline">
+                    <div class="auth-field__group">
+                        <label class="auth-field__label" for="age">年齢</label>
+                        <div class="auth-field__input-wrap auth-field__input-wrap--short">
+                            <input
+                                id="age"
+                                class="auth-field__input form-control @error('age') is-invalid @enderror"
+                                type="number"
+                                name="age"
+                                value="{{ old('age') }}"
+                                required
+                                autocomplete="off">
+                            @error('age')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="auth-field__group">
+                        <label class="auth-field__label" for="location">居住地</label>
+                        <div class="auth-field__input-wrap">
+                            <input
+                                id="location"
+                                class="auth-field__input form-control @error('location') is-invalid @enderror"
+                                type="text"
+                                name="location"
+                                value="{{ old('location') }}"
+                                required
+                                autocomplete="off">
+                            @error('location')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                {{-- メールアドレス --}}
+                <div class="auth-field">
+                    <label class="auth-field__label" for="email">メールアドレス</label>
+                    <div class="auth-field__input-wrap">
+                        <input
+                            id="email"
+                            class="auth-field__input form-control @error('email') is-invalid @enderror"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autocomplete="email">
+                        @error('email')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
+                </div>
+
+                {{-- パスワード --}}
+                <div class="auth-field">
+                    <label class="auth-field__label" for="password">パスワード</label>
+                    <div class="auth-field__input-wrap">
+                        <input
+                            id="password"
+                            class="auth-field__input form-control @error('password') is-invalid @enderror"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="new-password">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        @enderror
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-card__submit btn btn-secondary">登録</button>
+
+            </form>
         </div>
     </div>
-</div>
+</section>
 @endsection
