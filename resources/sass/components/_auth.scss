@@ -1,0 +1,133 @@
+// ============================================================
+// 認証関連ページ共通スタイル
+// components/_auth.scss
+// ============================================================
+// 使用ページ:
+//   - auth/login    (ログイン)
+//   - auth/register (会員登録)
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// ============================================================
+// 1. ページレイアウト
+// ============================================================
+
+.auth-page {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 3rem 0;
+    background-color: v.$bg-light;
+}
+
+// ============================================================
+// 2. カード
+// ============================================================
+
+.auth-card {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+    background-color: v.$white;
+    border-radius: v.$border-radius-base;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+
+    &__title {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    &__submit {
+        display: block;
+        width: 100%;
+        margin-top: 1.5rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+// ============================================================
+// 3. アラート（ログイン結果通知）
+// ============================================================
+
+.auth-alert {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: v.$border-radius-base;
+    border: 1px solid transparent;
+
+    p {
+        margin: 0;
+        font-size: 0.875rem;
+    }
+
+    &--danger {
+        border-color: v.$danger-color;
+        background-color: #f8d7da;
+        color: v.$danger-color;
+    }
+
+    &--success {
+        border-color: v.$primary-color;
+        background-color: #cfe2ff;
+        color: v.$primary-color;
+    }
+}
+
+// ============================================================
+// 4. フォームフィールド
+// ============================================================
+
+.auth-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    // 年齢・居住地など横並びフィールドのラッパー
+    &--inline {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    &__label {
+        flex-shrink: 0;
+        width: 9rem;
+        padding-top: 0.375rem; // input と高さを揃える
+        text-align: right;
+        font-size: 0.875rem;
+    }
+
+    &__input-wrap {
+        flex: 1;
+
+        &--short {
+            flex: 0 0 4rem; // 年齢など短い入力欄
+        }
+    }
+
+    // 横並びグループ（年齢 + 居住地）
+    &__group {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+        border: 1px solid v.$border-color;
+        border-radius: v.$border-radius-base;
+        background-color: v.$bg-light;
+        outline: none;
+        transition: border-color 0.15s ease;
+
+        &:focus {
+            border-color: v.$primary-color;
+            background-color: v.$white;
+        }
+    }
+}

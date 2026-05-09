@@ -1,0 +1,448 @@
+// ============================================================
+// 里親応募 関連ページ共通スタイル
+// components/_applies.scss
+// ============================================================
+// 使用ページ:
+//   - applies/create            (里親応募申請)
+//   - applies/indexForApplicant (応募済一覧)
+//   - applies/indexForPost      (応募者一覧)
+//   - applies/indexForOwner     (応募状況一覧・オーナー向け)
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// ============================================================
+// 1. 応募申請ページ (create)
+// ============================================================
+
+// ページ全体ラッパー
+.apply-page {
+    padding: 1rem;
+
+    &__inner {
+        padding: 1rem 0.5rem;
+        background-color: v.$white;
+        border-radius: v.$border-radius-base;
+
+        @media (min-width: 1200px) {
+            padding: 1rem 1.5rem;
+            margin: 0 3rem;
+        }
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    }
+}
+
+// バリデーションエラー
+.apply-errors {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: v.$border-radius-base;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+
+    ul {
+        margin-bottom: 0;
+        padding-left: 1.25rem;
+    }
+
+    li {
+        color: v.$danger-color;
+    }
+}
+
+// 2カラムレイアウト
+.apply-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+// 左カラム: 募集情報カード
+.apply-post-card {
+    flex: 0 0 auto;
+    width: calc(100% - 2rem);
+    padding: 0.5rem;
+    border: 1px solid v.$border-color;
+    border-radius: v.$border-radius-base;
+    background-color: v.$bg-light;
+    text-align: center;
+
+    @media (min-width: 1200px) {
+        width: 30%;
+    }
+
+    &__heading {
+        margin: 0.25rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    &__photo-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0.5rem;
+    }
+
+    &__photo {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: v.$border-radius-base;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+    }
+
+    &__table-wrap {
+        max-width: 77%;
+        margin: 1rem auto 0;
+    }
+
+    &__detail-link {
+        margin: 0.75rem 0;
+    }
+
+    &__poster {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    &__poster-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__poster-info {
+        text-align: left;
+
+        .poster-label {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .poster-name {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+// 右カラム: 応募フォームカード
+.apply-form-card {
+    flex: 0 0 auto;
+    width: calc(100% - 2rem);
+    padding: 0.5rem 1rem;
+    border: 1px solid v.$border-color;
+    border-radius: v.$border-radius-base;
+    background-color: v.$bg-light;
+
+    @media (min-width: 1200px) {
+        width: 55%;
+    }
+
+    &__heading {
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0.25rem 0;
+    }
+
+    &__checklist {
+        margin-top: 0.5rem;
+
+        h6 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 0.4rem;
+        }
+    }
+
+    &__message-section {
+        margin-top: 2rem;
+
+        .guide-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid v.$border-color;
+            border-radius: v.$border-radius-base;
+            background-color: v.$white;
+            resize: vertical;
+        }
+    }
+
+    &__submit-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0.5rem;
+    }
+}
+
+// ============================================================
+// 2. 一覧ページ共通 (indexForApplicant / indexForPost)
+// ============================================================
+
+// ページレイアウト
+.applies-page {
+    padding: 2rem 0;
+
+    &__inner {
+        padding: 1.5rem;
+        background-color: v.$white;
+        border-radius: v.$border-radius-base;
+    }
+
+    &__header {
+        margin-bottom: 1rem;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        font-size: 0.875rem;
+        color: v.$text-muted;
+        margin-bottom: 0;
+    }
+
+    &__empty {
+        text-align: center;
+        padding: 3rem 0;
+
+        p {
+            font-size: 1.1rem;
+            color: v.$text-muted;
+        }
+    }
+
+    &__pagination {
+        text-align: center;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+// フラッシュメッセージ
+.flash-message {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: v.$border-radius-base;
+
+    p {
+        margin: 0;
+    }
+
+    &--success {
+        border: 1px solid v.$primary-color;
+        background-color: v.$bg-light;
+        color: v.$primary-color;
+    }
+
+    &--danger {
+        border: 1px solid v.$danger-color;
+        background-color: #fff0f0;
+        color: v.$danger-color;
+    }
+}
+
+// カードグリッド
+.apply-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// 一覧カード
+.apply-card {
+    background-color: v.$white;
+    border-radius: v.$border-radius-base;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 0.75rem;
+
+    &--closed {
+        background-color: #dcdcdc;
+    }
+
+    &--applicant {
+        text-align: center;
+    }
+
+    &__photo {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: v.$border-radius-base;
+        margin-top: 0.5rem;
+    }
+
+    &__avatar {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-top: 0.5rem;
+    }
+
+    &__body {
+        padding: 0.75rem 0 0.25rem;
+    }
+
+    &__post-title {
+        font-size: 1rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0.5rem;
+    }
+
+    &__user-name {
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0.25rem;
+    }
+
+    &__apply-date {
+        text-align: center;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+        color: v.$text-muted;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        @media (min-width: 768px) {
+            justify-content: space-between;
+        }
+    }
+}
+
+// ============================================================
+// 3. 共通パーツ
+// ============================================================
+
+// 未読バッジ（全ページ共通）
+.unread-badge {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: v.$danger-color;
+    border: 2px solid v.$white;
+}
+
+// ============================================================
+// 4. オーナー向け (indexForOwner)
+// ============================================================
+
+.owner-page {
+    border: 1px solid v.$border-color;
+    background-color: v.$white;
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 1rem;
+    border-radius: v.$border-radius-base;
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0.5rem 0 0.75rem 0.5rem;
+    }
+}
+
+.owner-table-wrap {
+    overflow-x: auto;
+}
+
+.owner-table {
+    &__post-photo {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border: 1px solid v.$border-color;
+        border-radius: v.$border-radius-base;
+    }
+
+    &__post-info {
+        width: 20%;
+        vertical-align: middle;
+    }
+
+    &__applicant {
+        width: 15%;
+        vertical-align: middle;
+    }
+
+    &__applicant-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__apply-date {
+        font-size: 0.7rem;
+    }
+
+    &__message-icon {
+        font-size: 1.5rem;
+    }
+}

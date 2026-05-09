@@ -1,0 +1,22 @@
+// ============================================================
+// お気に入りページ固有スタイル
+// components/_likes.scss
+// ============================================================
+// 使用ページ:
+//   - likes/like (お気に入り一覧)
+//
+// ※ レイアウト・カードの共通スタイルは _applies.scss を参照
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// 応募ボタン（disabled 状態）
+// Bootstrap の .disabled クラスはリンクでもクリック可能なため
+// pointer-events を明示的に制御する
+.like-apply-btn {
+    &--disabled {
+        opacity: 0.65;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+}
