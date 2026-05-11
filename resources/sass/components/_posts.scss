@@ -1,0 +1,212 @@
+// ============================================================
+// 投稿関連ページスタイル
+// components/_posts.scss
+// ============================================================
+// 使用ページ:
+//   - posts/create   (新規投稿)
+//   - posts/edit     (投稿編集)
+//   - posts/index    (マイ募集一覧)
+//   - posts/matching (マッチング一覧)
+//   - posts/show     (募集詳細)
+//
+// ※ カードグリッド・apply-card・フラッシュメッセージ等は
+//    _applies.scss の共通クラスを使用
+// ============================================================
+
+@use "../abstracts/variables" as v;
+
+// ============================================================
+// 1. 投稿フォームページ共通 (create / edit)
+// ============================================================
+
+.post-form-page {
+    padding: 2rem 0;
+
+    &__inner {
+        padding: 1.5rem;
+        background-color: v.$white;
+        border-radius: v.$border-radius-base;
+    }
+
+    &__header {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid v.$border-color;
+        margin-bottom: 1.25rem;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+}
+
+// フォーム行（ラベル + フィールドの1行単位）
+.post-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+
+    &__label {
+        flex-shrink: 0;
+        font-size: 0.875rem;
+        font-weight: 500;
+        min-width: 8rem;
+
+        @media (min-width: 1200px) {
+            text-align: right;
+        }
+    }
+
+    &__field {
+        flex: 1;
+        min-width: 0;
+
+        // セレクト・短い入力
+        &--sm {
+            flex: 0 0 auto;
+            min-width: 8rem;
+            max-width: 14rem;
+        }
+
+        // タイトル・本文など横幅を広く取る
+        &--wide {
+            flex: 0 0 100%;
+
+            @media (min-width: 1200px) {
+                flex: 0 0 75%;
+            }
+        }
+    }
+
+    // 数値入力（年齢など）
+    &__num-input {
+        width: 64px;
+        text-align: right;
+    }
+
+    // 応募可能地域セレクト
+    &__location-num {
+        font-size: 0.875rem;
+        flex-shrink: 0;
+    }
+
+    &__location-select {
+        width: 130px;
+    }
+
+    &__note {
+        flex: 0 0 100%;
+        font-size: 0.75rem;
+        color: v.$text-muted;
+        margin: 0;
+
+        @media (min-width: 1200px) {
+            text-align: right;
+            flex: 0 0 41%;
+        }
+    }
+
+    // 応募可能地域・写真行は縦並びに
+    &--locations,
+    &--photos {
+        align-items: flex-start;
+    }
+}
+
+// 写真アップロードフィールド
+.post-photo-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__preview {
+        display: block;
+    }
+
+    &__input {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0;
+    }
+}
+
+// ============================================================
+// 2. 募集詳細ページ (show)
+// ============================================================
+
+.post-detail {
+    // 編集・削除・応募ボタンエリア
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1.5rem;
+    }
+
+    &__action-btn {
+        width: 40%;
+
+        & + & {
+            margin-left: 1rem;
+        }
+    }
+
+    // 写真3枚横並び
+    &__photos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        @media (min-width: 1200px) {
+            justify-content: space-between;
+        }
+    }
+
+    &__photo {
+        flex-shrink: 0;
+    }
+
+    // 詳細テーブル
+    &__table {
+        table-layout: fixed;
+        width: 100%;
+
+        td {
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+
+    // 投稿者情報
+    &__poster {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 1.5rem 0.5rem;
+    }
+
+    &__poster-avatar {
+        flex-shrink: 0;
+    }
+}
+
+// ============================================================
+// 3. 絞り込み検索フォーム (matching)
+// ============================================================
+
+.post-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

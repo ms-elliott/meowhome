@@ -1,173 +1,184 @@
 @extends('layouts.common')
 
 @section('title', 'マッチング一覧')
+
 @section('content')
-<section class="py-8">
-    <div class="container px-4 mx-auto">
-        <div class="py-4 px-3 px-lg-4 bg-white rounded">
-            <div class="ml-auto mb-4 flex">
-                <h3 class="text-xl font-bold">あなたにマッチした募集一覧</h3>
-                <h6 class="text-xl font-bold">(所在地または応募可能地域が一致した募集のみ表示されます。)</h6>
+<section class="applies-page">
+    <div class="container">
+        <div class="applies-page__inner">
+
+            {{-- ページタイトル --}}
+            <div class="applies-page__header">
+                <h3 class="applies-page__title">あなたにマッチした募集一覧</h3>
+                <p class="applies-page__subtitle">（所在地または応募可能地域が一致した募集のみ表示されます。）</p>
             </div>
-            <!-- ▼絞り込み検索▼ -->
-            <div class="accordion mb-3" id="accordionExample">
+
+            {{-- 絞り込み検索 --}}
+            <div class="accordion mb-3" id="searchAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button
+                            type="button"
+                            class="accordion-button collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#searchPanel"
+                            aria-expanded="false"
+                            aria-controls="searchPanel">
                             絞り込み検索
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="searchPanel" class="accordion-collapse collapse" data-bs-parent="#searchAccordion">
                         <div class="accordion-body">
-                            <form action="{{ route('matchings.index', [Illuminate\Support\Facades\Auth::user()]) }}" method="GET">
+                            <form action="{{ route('matchings.index', [auth()->user()]) }}" method="GET">
                                 @csrf
-                                <div class="form-group">
-                                    <div class="row d-flex align-items-center mb-lg-1">
-                                        <label class="col-3 col-lg-1 text-lg-end" for="location_id">所在地</label>
-                                        <div class="col-9 col-lg-2">
-                                            <select id="location_id" class="form-select" aria-label="location" name="location_id">
-                                                <option value="" selected>未選択</option>
+                                <div class="post-search-form">
+
+                                    {{-- 所在地・状況 --}}
+                                    <div class="post-form-row">
+                                        <label class="post-form-row__label" for="location_id">所在地</label>
+                                        <div class="post-form-row__field post-form-row__field--sm">
+                                            <select id="location_id" class="form-select" name="location_id">
+                                                <option value="">未選択</option>
                                                 @foreach ($locations as $location)
-                                                <option value="{{ $location->id }}" @if($location->id === (int)old('location_id')) selected @endif > {{ $location->name }} </option>
+                                                <option value="{{ $location->id }}" @selected($location->id === (int)old('location_id'))>{{ $location->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <label class="col-3 col-lg-1 text-lg-end" for="status">状況</label>
-                                        <div class="col-9 col-lg-3 my-2">
-                                            <select id="status" class="form-select" aria-label="status" name="status">
-                                                <option value="" selected>未選択</option>
-                                                <option value="0" @if(old('status')==='0' ) selected @endif>募集中</option>
-                                                <option value="1" @if(old('status')==='1' ) selected @endif>検討中</option>
-                                                <option value="2" @if(old('status')==='2' ) selected @endif>トライアル中</option>
-                                                <option value="3" @if(old('status')==='3' ) selected @endif>募集終了</option>
-                                                <option value="4" @if(old('status')==='4' ) selected @endif>里親決定済</option>
+                                        <label class="post-form-row__label" for="status">状況</label>
+                                        <div class="post-form-row__field post-form-row__field--sm">
+                                            <select id="status" class="form-select" name="status">
+                                                <option value="">未選択</option>
+                                                @foreach ([0 => '募集中', 1 => '検討中', 2 => 'トライアル中', 3 => '募集終了', 4 => '里親決定済'] as $val => $label)
+                                                <option value="{{ $val }}" @selected(old('status')===(string)$val)>{{ $label }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row d-flex align-items-center">
-                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="age_from">年齢</label>
-                                        <div class="col-9 col-lg-2 d-flex align-items-center mb-2">
-                                            <input id="age_from" class="form-control text-sm border rounded text-end" type="text" name="age_from" value="{{ old('age_from') }}" style="width: 60px;">
-                                            <label class="text-end mx-1" for="age_to">〜</label>
-                                            <input id="age_to" class="form-control text-sm border rounded text-end" type="text" name="age_to" value="{{ old('age_to') }}" style="width: 60px;">
-                                            <label class="ms-xl-2">歳</label>
+
+                                    {{-- 年齢・性別・種類・毛柄 --}}
+                                    <div class="post-form-row">
+                                        <label class="post-form-row__label" for="age_from">年齢</label>
+                                        <div class="post-form-row__field d-flex align-items-center gap-1">
+                                            <input id="age_from" class="form-control post-form-row__num-input" type="number" name="age_from" value="{{ old('age_from') }}" min="0">
+                                            <span>〜</span>
+                                            <input id="age_to" class="form-control post-form-row__num-input" type="number" name="age_to" value="{{ old('age_to') }}" min="0">
+                                            <span>歳</span>
                                         </div>
-                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="gender">性別</label>
-                                        <div class="col-9 col-lg-2 mb-2">
-                                            <select id="gender" class="form-select" aria-label="gender" name="gender">
-                                                <option value="" selected>未選択</option>
-                                                <option value="0" @if(old('gender')==='0' ) selected @endif>オス</option>
-                                                <option value="1" @if(old('gender')==='1' ) selected @endif>メス</option>
+                                        <label class="post-form-row__label" for="gender">性別</label>
+                                        <div class="post-form-row__field post-form-row__field--sm">
+                                            <select id="gender" class="form-select" name="gender">
+                                                <option value="">未選択</option>
+                                                <option value="0" @selected(old('gender')==='0' )>オス</option>
+                                                <option value="1" @selected(old('gender')==='1' )>メス</option>
                                             </select>
                                         </div>
-                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="breed_id">種類</label>
-                                        <div class="col-9 col-lg-2">
-                                            <select id="breed_id" class="form-select mb-2" aria-label="breed" name="breed_id">
-                                                <option value="" selected>未選択</option>
+                                        <label class="post-form-row__label" for="breed_id">種類</label>
+                                        <div class="post-form-row__field post-form-row__field--sm">
+                                            <select id="breed_id" class="form-select" name="breed_id">
+                                                <option value="">未選択</option>
                                                 @foreach ($breeds as $breed)
-                                                <option value="{{ $breed->id }}" @if($breed->id === (int)old('breed_id')) selected @endif > {{ $breed->name }} </option>
+                                                <option value="{{ $breed->id }}" @selected($breed->id === (int)old('breed_id'))>{{ $breed->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <label class="col-3 col-lg-1 text-lg-end mb-2" for="pattern_id">毛柄</label>
-                                        <div class="col-9 col-lg-2 mb-2">
-                                            <select id="pattern_id" class="form-select" aria-label="pattern" name="pattern_id">
-                                                <option value="" selected>未選択</option>
+                                        <label class="post-form-row__label" for="pattern_id">毛柄</label>
+                                        <div class="post-form-row__field post-form-row__field--sm">
+                                            <select id="pattern_id" class="form-select" name="pattern_id">
+                                                <option value="">未選択</option>
                                                 @foreach ($patterns as $pattern)
-                                                <option value="{{ $pattern->id }}" @if($pattern->id === (int)old('pattern_id')) selected @endif > {{ $pattern->name }} </option>
+                                                <option value="{{ $pattern->id }}" @selected($pattern->id === (int)old('pattern_id'))>{{ $pattern->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row d-flex align-items-start mt-lg-1 mb-1">
-                                        <label class="col-3 col-lg-1 text-lg-end">応募条件</label>
-                                        <div class="col-9 col-lg-4 d-flex align-items-center justify-content-start">
-                                            <div class="form-check d-flex justify-content-center me-4 me-lg-5">
-                                                <input class="form-check-input" type="checkbox" value="1" id="accept_single" name="accept_single" @if(old('accept_single')==='1' ) checked @endif>
-                                                <label class="form-check-label ms-1" for="accept_single">
-                                                    単身者応募可
-                                                </label>
+
+                                    {{-- 応募条件 --}}
+                                    <div class="post-form-row">
+                                        <span class="post-form-row__label">応募条件</span>
+                                        <div class="post-form-row__field d-flex gap-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="accept_single" name="accept_single" @checked(old('accept_single')==='1' )>
+                                                <label class="form-check-label" for="accept_single">単身者応募可</label>
                                             </div>
-                                            <div class="form-check d-flex justify-content-center">
-                                                <input class="form-check-input" type="checkbox" value="1" id="accept_senior" name="accept_senior" @if(old('accept_senior')==='1' ) checked @endif>
-                                                <label class="form-check-label ms-1" for="accept_senior">
-                                                    高齢者応募可
-                                                </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1" id="accept_senior" name="accept_senior" @checked(old('accept_senior')==='1' )>
+                                                <label class="form-check-label" for="accept_senior">高齢者応募可</label>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="row d-flex align-items-center justify-content-center mt-lg-2 mt-3 mb-2">
-                                    <button type="submit" class="btn btn-secondary col-4 col-lg-2 py-2 px-4">検索</button>
+                                <div class="d-flex justify-content-center mt-3 mb-2">
+                                    <button type="submit" class="btn btn-secondary px-4 py-2">検索</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ▲絞り込み検索▲ -->
-            @if($posts->isEmpty())
-            <div class="row">
-                <div class="col my-3 mx-auto">
-                    <p class="text-center fs-5">該当する募集がありません</p>
-                </div>
+
+            {{-- カード一覧 --}}
+            @if ($posts->isEmpty())
+            <div class="applies-page__empty">
+                <p>該当する募集がありません</p>
             </div>
             @else
-            <div class="row row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-lg-3">
-                @foreach($posts as $post)
-                <div class="px-3 py-3">
-                    <div class="card px-3 shadow" @if(in_array($post->status, [3, 4], true)) style="background-color: #DCDCDC;" @endif>
-                        <img src="{{ asset('storage/posts/' . App\Http\Controllers\ImageController::convert2fileName($post->photo1)) }}" class="card-img-top rounded mt-2" alt="写真" height="250" width="250" style="object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title text-truncate">{{ $post->title }}</h5>
-                            <p class="card-text">
-                            <table class="table table-bordered border-secondary table-sm px-3">
-                                <tbody>
-                                    <tr>
-                                        <th class="table-secondary text-center">状況</th>
-                                        <td class="ps-2 @if(in_array($post->status, [3, 4], true)) table-secondary @else bg-white @endif" width="70%">
-                                            {{ App\Models\Post::getStatusName($post->status) }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-secondary text-center">年齢</th>
-                                        <td class="ps-2 @if(in_array($post->status, [3, 4], true)) table-secondary @else bg-white @endif">
-                                            {{ $post->age_year }} 歳 {{ $post->age_month }} ヶ月
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-secondary text-center">性別</th>
-                                        <td class="ps-2 @if(in_array($post->status, [3, 4], true)) table-secondary @else bg-white @endif">
-                                            {{ $post->gender == 0 ? 'オス' : 'メス';}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="table-secondary text-center">所在地</th>
-                                        <td class="ps-2 @if(in_array($post->status, [3, 4], true)) table-secondary @else bg-white @endif">
-                                            {{ $post->location->name }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </p>
-                            <div class="text-center">
-                                <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-secondary px-4 me-3">詳細</a>
-                                <form action="{{ route('posts.like', $post) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="btn {{ $post->likes->contains('user_id', auth()->id()) ? 'btn-danger' : 'btn-outline-danger' }}">
-                                        {!! $post->likes->contains('user_id', auth()->id()) ? '<i class="bi bi-heart-fill"></i>' : '<i class="bi bi-heart"></i>' !!}
-                                    </button>
-                                </form>
-                            </div>
+            <div class="apply-card-grid">
+                @foreach ($posts as $post)
+                @php $closed = in_array($post->status, [3, 4], true) @endphp
+                <div class="apply-card {{ $closed ? 'apply-card--closed' : '' }}">
+                    <img
+                        src="{{ asset('storage/posts/' . App\Http\Controllers\ImageController::convert2fileName($post->photo1)) }}"
+                        class="apply-card__photo"
+                        alt="写真">
+                    <div class="apply-card__body">
+                        <h5 class="apply-card__post-title">{{ $post->title }}</h5>
+                        <table class="table table-bordered border-secondary table-sm">
+                            <tbody>
+                                <tr>
+                                    <th class="table-secondary text-center">状況</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}" width="70%">
+                                        {{ App\Models\Post::getStatusName($post->status) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="table-secondary text-center">年齢</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}">
+                                        {{ $post->age_year }} 歳 {{ $post->age_month }} ヶ月
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="table-secondary text-center">性別</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}">
+                                        {{ $post->genderLabel }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="table-secondary text-center">所在地</th>
+                                    <td class="ps-2 {{ $closed ? 'table-secondary' : 'bg-white' }}">
+                                        {{ $post->location->name }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="apply-card__actions">
+                            <a href="{{ route('posts.show', ['id' => $post->id]) }}" class="btn btn-secondary px-4">詳細</a>
+                            <form action="{{ route('posts.like', $post) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn {{ $post->likes->contains('user_id', auth()->id()) ? 'btn-danger' : 'btn-outline-danger' }}">
+                                    <i class="bi {{ $post->likes->contains('user_id', auth()->id()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-5">
+            <div class="applies-page__pagination">
                 {{ $posts->links() }}
             </div>
             @endif
+
         </div>
     </div>
 </section>
